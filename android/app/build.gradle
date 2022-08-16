@@ -170,6 +170,10 @@ android {
                 }
             }
         }
+
+        // Add to Detox.
+        testBuildType System.getProperty('testBuildType', 'debug')
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     if (isNewArchitectureEnabled()) {
@@ -279,6 +283,10 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
+
+    // Add to Detox.
+    androidTestImplementation('com.wix:detox:+') { transitive = true }
+    androidTestImplementation 'junit:junit:4.12'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

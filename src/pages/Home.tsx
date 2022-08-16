@@ -20,17 +20,17 @@ interface SkillData {
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
   const [mySkills, setMySkills] = useState<SkillData[]>([]);
-  const [gretting, setGretting] = useState('');
+  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
     const currentHour = new Date().getHours();
     
     if (currentHour >= 5 && currentHour < 12) {
-      setGretting('Good morning')
+      setGreeting('Good morning')
     } else if (currentHour >= 12 && currentHour < 18) {
-      setGretting('Good afternoon')
+      setGreeting('Good afternoon')
     } else {
-      setGretting('Good night')
+      setGreeting('Good night')
     }
   }, [])
 
@@ -49,8 +49,13 @@ export function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Welcome, Raphael</Text>
-      <Text style={styles.gretting}>{gretting}</Text>
+      <Text style={styles.title} testID="welcome">
+        Welcome, Raphael
+      </Text>
+
+      <Text style={styles.greeting}>
+        {greeting}
+      </Text>
 
       <TextInput
         style={styles.input}
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
   separator: {
     marginVertical: 10
   },
-  gretting: {
+  greeting: {
     color: '#FFF'
   }
 });
